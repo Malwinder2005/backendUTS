@@ -11,7 +11,7 @@ const createMenu = async (data) => {
     err.code = 'BAD_REQUEST';
     throw err;
   }
-  return await menuRepository.createMenu(data);
+  return menuRepository.createMenu(data);
 };
 
 const updateMenu = async (id, data) => {
@@ -25,9 +25,23 @@ const updateMenu = async (id, data) => {
   return result;
 };
 
+// DELETE MENU SERVICE
+const deleteMenu = async (id) => {
+  const menu = await menuRepository.deleteMenu(id);
+  if (!menu) {
+    throw errorResponder('Menu not found');
+  }
+  return menu;
+};
+
+// CREATE ORDER SERVICE
+const createOrder = async (data) => menuRepository.createOrder(data);
+
 module.exports = {
   getMenuList,
   getMenuById,
   createMenu,
   updateMenu,
+  deleteMenu,
+  createOrder,
 };

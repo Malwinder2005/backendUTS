@@ -1,3 +1,4 @@
+const { errorResponder, errorTypes } = require('../../../core/errors');
 const menuService = require('./menu-service');
 
 const getMenus = async (req, res, next) => {
@@ -43,4 +44,46 @@ const updateMenu = async (req, res, next) => {
   }
 };
 
-module.exports = { getMenus, getDetailMenu, createMenu, updateMenu };
+// DELETE MENU
+const deleteMenu = async (req, res, next) => {
+  try {
+    const Delete = await menuService.deleteUser(req.params.id);
+
+    if (!Delete) {
+      throw errorResponder(
+        errorTypes.UNPROCESSABLE_ENTITY,
+        'Failed to delete user'
+      );
+    }
+
+    return res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// CREATE ORDER
+const createOrder = async (req, res, next) => {
+  try {
+    const orderData = req.body;
+
+    const result = await menuService.createOrder(orderData);
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Order created successfully',
+      data: result,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = {
+  getMenus,
+  getDetailMenu,
+  createMenu,
+  updateMenu,
+  deleteMenu,
+  createOrder,
+};
