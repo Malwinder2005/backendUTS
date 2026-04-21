@@ -1,8 +1,9 @@
-const express = require('express');
-const route = express.Router();
 const menuController = require('./menu-controller');
 
-route.get('/', menuController.getMenus);
-route.get('/:id', menuController.getDetailMenu);
-
-module.exports = route;
+module.exports = (router) => {
+  // Tambahkan '/menu' di setiap path
+  router.get('/menu', menuController.getMenus);
+  router.get('/menu/:id', menuController.getDetailMenu);
+  router.post('/menu', menuController.createMenu);
+  router.put('/menu/:id', menuController.updateMenu);
+};

@@ -19,4 +19,28 @@ const getDetailMenu = async (req, res, next) => {
   }
 };
 
-module.exports = { getMenus, getDetailMenu };
+// 🔽 No 3: Tambah Menu (POST /api/menu)
+const createMenu = async (req, res, next) => {
+  try {
+    const newMenu = await menuService.createMenu(req.body);
+    return res
+      .status(201)
+      .json({ message: 'Menu berhasil ditambahkan', data: newMenu });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// 🔽 No 4: Update Menu (PUT /api/menu/:id)
+const updateMenu = async (req, res, next) => {
+  try {
+    const updatedMenu = await menuService.updateMenu(req.params.id, req.body);
+    return res
+      .status(200)
+      .json({ message: 'Menu berhasil diupdate', data: updatedMenu });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = { getMenus, getDetailMenu, createMenu, updateMenu };
