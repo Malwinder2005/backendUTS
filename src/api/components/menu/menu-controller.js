@@ -47,7 +47,7 @@ const updateMenu = async (req, res, next) => {
 // DELETE MENU
 const deleteMenu = async (req, res, next) => {
   try {
-    const Delete = await menuService.deleteUser(req.params.id);
+    const Delete = await menuService.deleteMenu(req.params.id);
 
     if (!Delete) {
       throw errorResponder(
