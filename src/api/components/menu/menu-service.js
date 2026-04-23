@@ -34,14 +34,10 @@ const deleteMenu = async (id) => {
   return menu;
 };
 
-// CREATE ORDER SERVICE
-const createOrder = async (data) => menuRepository.createOrder(data);
-
 module.exports = {
   getMenuList,
   getMenuById,
   createMenu,
   updateMenu,
   deleteMenu,
-  createOrder,
 };

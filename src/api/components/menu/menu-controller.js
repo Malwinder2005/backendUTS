@@ -62,28 +62,10 @@ const deleteMenu = async (req, res, next) => {
   }
 };
 
-// CREATE ORDER
-const createOrder = async (req, res, next) => {
-  try {
-    const orderData = req.body;
-
-    const result = await menuService.createOrder(orderData);
-
-    return res.status(200).json({
-      status: 'success',
-      message: 'Order created successfully',
-      data: result,
-    });
-  } catch (error) {
-    return next(error);
-  }
-};
-
 module.exports = {
   getMenus,
   getDetailMenu,
   createMenu,
   updateMenu,
   deleteMenu,
-  createOrder,
 };

@@ -1,5 +1,4 @@
 const Menu = require('./menu-model');
-const Order = require('./order-model');
 
 const getAllMenus = async () => await Menu.find({});
 
@@ -16,17 +15,10 @@ const updateMenuById = async (id, data) =>
 // DELETE MENU REPOSITORY
 const deleteMenu = async (id) => Menu.findByIdAndDelete(id);
 
-// CREATE ORDER
-const createOrder = async (data) => {
-  const order = new Order(data);
-  return order.save();
-};
-
 module.exports = {
   getAllMenus,
   getMenuById,
   createMenu,
   updateMenuById,
   deleteMenu,
-  createOrder,
 };

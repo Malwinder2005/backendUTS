@@ -5,8 +5,6 @@ module.exports = (router) => {
   router.get('/menu', menuController.getMenus);
   router.get('/menu/:id', menuController.getDetailMenu);
   router.post('/menu', menuController.createMenu);
-  // CREATE ORDER
-  router.post('/orders', menuController.createOrder);
   router.put('/menu/:id', menuController.updateMenu);
   // DELETE MENU
   router.delete('/menu/:id', menuController.deleteMenu);
