@@ -64,7 +64,11 @@ const createOrder = async (orderData) => {
   // save into database
   return orderRepository.createOrder(newOrder);
 };
+const getOrders = () => orderRepository.getOrders();
+const getOrderById = (id) => orderRepository.getOrderById(id);
 
 module.exports = {
   createOrder,
+  getOrders,
+  getOrderById,
 };

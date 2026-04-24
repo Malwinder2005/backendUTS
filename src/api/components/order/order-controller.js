@@ -26,7 +26,25 @@ const createOrder = async (req, res, next) => {
     return next(error);
   }
 };
+const getOrders = async (req, res, next) => {
+  try {
+    const orders = await orderService.getOrders();
+    return res.status(200).json(orders);
+  } catch (error) {
+    return next(error);
+  }
+};
+const getOrderById = async (req, res, next) => {
+  try {
+    const order = await orderService.getOrderById(req.params.id);
+    return res.status(200).json(order);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 module.exports = {
   createOrder,
+  getOrders,
+  getOrderById,
 };
